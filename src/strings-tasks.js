@@ -343,7 +343,12 @@ function isPalindrome(str) {
  *   findLongestWord('No words here') => 'words'
  */
 function findLongestWord(sentence) {
-  
+  const list = sentence.split(' ');
+  let result = list[0];
+  for (let i = 1; i < list.length; i += 1) {
+    if (list[i - 1].length < list[i].length) result = list[i];
+  }
+  return result;
 }
 
 /**
@@ -356,8 +361,12 @@ function findLongestWord(sentence) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const list = str.split(' ');
+  for (let i = 0; i < list.length; i += 1) {
+    list[i] = reverseString(list[i]);
+  }
+  return list.join(' ');
 }
 
 /**
@@ -371,8 +380,15 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  let result = '';
+  let upper = '';
+  for (let i = 0; i < str.length; i += 1) {
+    upper = str.charAt(i).toUpperCase();
+    if (str.charAt(i) === upper) result += str.charAt(i).toLowerCase();
+    else result += upper;
+  }
+  return result;
 }
 
 /**
@@ -388,8 +404,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -402,8 +418,10 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const startIndex = value.indexOf('Hello, ') + 'Hello, '.length;
+  const endIndex = value.indexOf('!');
+  return value.slice(startIndex, endIndex);
 }
 
 /**
@@ -417,8 +435,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, -1);
 }
 
 /**
